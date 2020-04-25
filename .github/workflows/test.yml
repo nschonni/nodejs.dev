@@ -19,8 +19,14 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Run test and coverage
-        run: npm run test-ci
+      - name: Run format checks
+        run: npm run format-check
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run Jest
+        run: npm run jest -- --coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
